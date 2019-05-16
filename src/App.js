@@ -43,33 +43,32 @@ class App extends Component {
 
   render() {
     const { codeLang, dataFail, dataMsg, isLoading } = this.state;
-    let show = "";
 
     if (isLoading && !dataFail) {
-      show = (
-        <div className="spinner-border text-secondary" role="status">
-          <span className="sr-only">Loading...</span>
+      return (
+        <div className="container">
+          <HeaderNav />
+          <div className="App">
+            <div className="spinner-border text-secondary" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+          </div>
         </div>
       );
     }
 
     if (dataFail) {
-      show = (
-        <React.Fragment>
-          <div className="spinner-border text-danger" role="status">
-            <span className="sr-only">Loading...</span>
-          </div>
-          <div>
-            <p className="errormsg">{dataMsg}</p>
-          </div>
-        </React.Fragment>
-      );
-    }
-
-    if (show.length > 0) {
       return (
         <div className="container">
-          <div className="App">{show}</div>
+          <HeaderNav />
+          <div className="App">
+            <div className="spinner-border text-danger" role="status">
+              <span className="sr-only">Loading...</span>
+            </div>
+            <div>
+              <p className="errormsg">{dataMsg}</p>
+            </div>
+          </div>
         </div>
       );
     }
